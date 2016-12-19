@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,700,800');
+*{
+    font-family: 'Open Sans', sans-serif;
+}
+body{
+    overflow-x: hidden;
+}
+.m-heading{
+    font-weight: bold;
+    letter-spacing: -5px;
+    margin:0px ;
+}
+.m-subheading{
+    margin:0px ;
+}
+a{
+    text-decoration: none;
+}
+a:hover,a:focus{
+    text-decoration: none;
+}
+h3{
+    color: #000;
+}
+.m-head{
+    border-top:8px solid #27aea2;
+    background-color: transparent;
+    height: 500px;
+    padding-top: 70px;
+}
+
+.m-effect1{
+    overflow: hidden;
+    background-color: #fff;
+    opacity:0.2;
+    position: absolute;
+    height: 500px;
+    width: 100%;
+    min-width: 500px;
+    top:0px;
+    z-index: -999;
+}
+.subheading{
+    margin-top: 10px;
+    font-weight: 200;
+    letter-spacing: 5px;
+
+}
+.wrapper{
+    overflow-x: hidden;
+    overflow: hidden;
+    overflow-y: hidden;
+    width: 100%;
+}
+.sign{
+    padding: 10px;
+    opacity: 1;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    -webkit-border-radius: 500px;
+    -moz-border-radius: 500px;
+    border-radius: 500px;
+    animation: all;
+    transition-duration: 500ms;
+}
+.sign:hover,.sign:focus,.sign:active,.sign:visited{
+    opacity:1;
+
+}
+.sign-menu{
+    width: 300px;
+    padding-right:40px;
+    padding-left:40px;
+}

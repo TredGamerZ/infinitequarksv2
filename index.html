@@ -18,9 +18,10 @@
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="css/jumbotron.css" rel="stylesheet">
+    <link href="css/ta-main.css" rel="stylesheet">
 
     <link rel="stylesheet" href="css/effect2.css">
+    <link rel="stylesheet" href="css/sh-main.css">
 
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -45,31 +46,71 @@
             <h3 class="m-subheading"> &nbsp;We Design <b>Awesome</b> Stuff</h3>
           </div>
           <div class="col-md-4 col-sm-4">
+
             <div class="sign text-center">
               <a class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                 <img src="img/user.png" width="40px" style="margin: 0px"></a>
               <!--<h4 class="subheading" style="margin: 0px;">Login</h4></a>-->
+              <div class="dropdown-menu container">
+                <div class="login-box container">
+                  <div class="lb-header">
+                    <a href="#" class="active" id="login-box-link">Login</a>
+                    <a href="#" id="signup-box-link">Sign Up</a>
+                  </div>
+                  <form class="email-login">
+                    <div class="u-form-group">
+                      <input type="email" placeholder="Email"/>
+                    </div>
+                    <div class="u-form-group" >
+                      <input type="password" placeholder="Password"/>
+                    </div>
+                    <div class="u-form-group">
+                      <button>Log in</button>
+                    </div>
+                    <div class="u-form-group" id="space">
+                      <a href="#" class="forgot-password">Forgot password?</a>
+                    </div>
+                    <div class="greyText">
+                      or Login Using
+                    </div>
+                    <div class="social-login">
+                      <a href="#">
+                        <i class="fa fa-facebook fa-lg"></i>
+                        facebook
+                      </a>
+                      <a href="#">
+                        <i class="fa fa-google-plus fa-lg"></i>
+                        google
+                      </a>
+                    </div>
+                  </form>
+                  <form class="email-signup">
+                    <div class="u-form-group">
+                      <input type="email" placeholder="Email"/>
+                    </div>
+                    <div class="u-form-group">
+                      <input type="password" placeholder="Password"/>
+                    </div>
 
-                 <div class="dropdown-menu sign-menu ">
-                  <h4>Login</h4>
-                   <form class="form-horizontal">
-                     <div class="form-group">
-                       <label class="sr-only" for="exampleInputEmail3">Email address</label>
-                       <input type="email" class="form-control" id="exampleInputEmail3" placeholder="Email">
-                     </div>
-                     <div class="form-group">
-                       <label class="sr-only" for="exampleInputPassword3">Password</label>
-                       <input type="password" class="form-control" id="exampleInputPassword3" placeholder="Password">
-                     </div>
-                     <div class="checkbox">
-                       <label>
-                         <input type="checkbox"> Remember me
-                       </label>
-                     </div>
-                     <button type="submit" class="btn btn-default">Sign in</button>
-                   </form>
-               </div>
-
+                    <div class="u-form-group" id="space2">
+                      <button>Sign Up</button>
+                    </div>
+                    <div class="greyText">
+                      or Login Using
+                    </div>
+                    <div class="social-login">
+                      <a href="#">
+                        <i class="fa fa-facebook fa-lg"></i>
+                        facebook
+                      </a>
+                      <a href="#">
+                        <i class="fa fa-google-plus fa-lg"></i>
+                        google
+                      </a>
+                    </div>
+                  </form>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -138,5 +179,20 @@
     <!-- IE10 viewport hack for Surface/desktop
     Windows 8 bug -->
     <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script>
+        $(".email-signup").hide();
+        $("#signup-box-link").click(function() {
+            $(".email-login").fadeOut(100);
+            $(".email-signup").delay(100).fadeIn(100);
+            $("#login-box-link").removeClass("active");
+            $("#signup-box-link").addClass("active");
+        });
+        $("#login-box-link").click(function() {
+            $(".email-login").delay(100).fadeIn(100);
+            $(".email-signup").fadeOut(100);
+            $("#login-box-link").addClass("active");
+            $("#signup-box-link").removeClass("active");
+        });
+    </script>
   </body>
 </html>

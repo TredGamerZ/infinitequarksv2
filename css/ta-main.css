@@ -27,6 +27,11 @@ h3{
     background-color: transparent;
     height: 500px;
     padding-top: 70px;
+}.s-head{
+    /*border-top:8px solid #27aea2;*/
+    background-color: transparent;
+
+    padding-top: 70px;
 }
 
 .m-effect1{
@@ -67,6 +72,9 @@ h3{
     opacity:1;
 
 }
+.p50{
+    padding: 50px;
+}
 .sign-menu{
     width: 300px;
     padding-right:40px;
@@ -75,4 +83,25 @@ h3{
 .rup{
     position: relative;
     top:-50px;
+}
+.w100{
+    width: 100% !important;
+    margin: 0px;
+    padding: 0px;
+}
+.sectionblue{
+    margin: 0px;
+    padding: 0px;
+    background : -moz-linear-gradient(-5.27% 50% 0deg,rgba(9, 103, 119, 1) 0%,rgba(0, 172, 162, 1) 100%);
+    background : -webkit-linear-gradient(0deg, rgba(9, 103, 119, 1) 0%, rgba(0, 172, 162, 1) 100%);
+    background : -webkit-gradient(linear,-5.27% 50% ,91.35% 50% ,color-stop(0,rgba(9, 103, 119, 1) ),color-stop(1,rgba(0, 172, 162, 1) ));
+    background : -o-linear-gradient(0deg, rgba(9, 103, 119, 1) 0%, rgba(0, 172, 162, 1) 100%);
+    background : -ms-linear-gradient(0deg, rgba(9, 103, 119, 1) 0%, rgba(0, 172, 162, 1) 100%);
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#096777', endColorstr='#00ACA2' ,GradientType=0)";
+    background : linear-gradient(90deg, rgba(9, 103, 119, 1) 0%, rgba(0, 172, 162, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#096777',endColorstr='#00ACA2' , GradientType=1);
+
+}
+.cwhite{
+    color: white !important;
 }

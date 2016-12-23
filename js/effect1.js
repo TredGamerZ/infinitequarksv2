@@ -12,18 +12,18 @@ var size = {
  */
 
 var options = {
-    color: "#000",
-    waveAmplitude: 300,
+    color: "#ffffff",
+    waveAmplitude: 100,
     waveRadius:100,
-    waveElasticity: 10,
-    waveStrength: 5,
-    waveMouse: 800,
+    waveElasticity: 5,
+    waveStrength: 0,
+    waveMouse: 80,
     waveMax: 100,
     waveComeUp: function() {},
     waveRiseSpeed: 10,
-    lineWidth: 3,
-    waveLength: 300,
-    distance: 200
+    lineWidth: 0.3,
+    waveLength: 150,
+    distance: 60
 
 };
 

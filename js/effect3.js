@@ -26,7 +26,7 @@ function ParticleModel(config) {
         speed: 0,
         opacity: 1,
         vector: 0,
-        domElement: angular.element(document.createElement('div')).addClass('particle2'),
+        domElement: angular.element(document.createElement('div')).addClass('particle'),
         id: undefined,                  // should be defined in config
         boxSize: {width: 0, height: 0}, // should be defined in config
         header: undefined,              // should be defined in config
@@ -175,5 +175,5 @@ function ParticleController(config) {
 
 var pc = new ParticleController({
     numberOfParticles: 20,
-    header: angular.element(document.querySelector('.header2'))
+    header: angular.element(document.querySelector('.header'))
 }).init();

@@ -1,88 +1,179 @@
 /**
- * Created by m on 12/19/2016.
+ * Created by m on 12/21/2016.
  */
-var $bubbles = $('.bubbles');
+/*
+ Copyright John Josef | uh-sem-blee, Co. | typefoo
+ */
+function ParticleModel(config) {
+    var $scope = this;
+    var MAX_SIZE =10;
+    var MIN_SIZE = 5;
+    var MAX_SPEED = 10; // per second
+    var MIN_SPEED =10;
+    var MAX_OPACITY = 0.5;
+    var MIN_OPACITY = 0.3;
+    var MAX_VECTOR = 360;
+    var MIN_VECTOR = 0;
+    var MAX_LIFE = 5000; // ms
+    var MIN_LIFE = 1000;
 
-function bubbles() {
+    var defaults = {
+        displayed: false,
+        ended: false,
+        size: 0,
+        x: 0,
+        y: 0,
+        speed: 0,
+        opacity: 1,
+        vector: 0,
+        domElement: angular.element(document.createElement('div')).addClass('particle2'),
+        id: undefined,                  // should be defined in config
+        boxSize: {width: 0, height: 0}, // should be defined in config
+        header: undefined,              // should be defined in config
+        controller: undefined           // should be defined in config
+    };
 
-    // Settings
-    var min_bubble_count = 20, // Minimum number of bubbles
-        max_bubble_count = 30, // Maximum number of bubbles
-        min_bubble_size = 5, // Smallest possible bubble diameter (px)
-        max_bubble_size = 5; // Maximum bubble blur amount (px)
+    $scope.config = angular.extend(defaults, config);
 
-    // Calculate a random number of bubbles based on our min/max
-    var bubbleCount = min_bubble_count + Math.floor(Math.random() * (max_bubble_count + 1));
+    var rand_range = function(min, max, round) {
+        if(round === undefined) {
+            return Math.floor(Math.random() * (max - min) + min);
+        } else if (round === false) {
+            return Math.random() * (max - min) + min;
+        }
+    };
 
-    // Create the bubbles
-    for (var i = 0; i < bubbleCount; i++) {
-        $bubbles.append('<div class="bubble-container"><div class="bubble"></div></div>');
-    }
+    $scope.init = function() {
+        $scope.config.size = rand_range(MIN_SIZE, MAX_SIZE);
+        $scope.config.speed = rand_range(MIN_SPEED, MAX_SPEED);
+        $scope.config.x = rand_range(0, $scope.config.boxSize.width);
+        $scope.config.y = rand_range(0, $scope.config.boxSize.height);
+        $scope.config.opacity = rand_range(MIN_OPACITY, MAX_OPACITY, false);
+        if($scope.config.size > 100) {
+            $scope.config.opacity = rand_range(0.01, 0.2, false);
+        }
+        $scope.config.blur = 0 ;
+        $scope.config.vector = rand_range(MIN_VECTOR, MAX_VECTOR);
+        $scope.config.xspeed = Math.cos($scope.config.vector) * $scope.config.speed;
+        $scope.config.yspeed = Math.sin($scope.config.vector) * $scope.config.speed;
+        var createTime = new Date().getTime();
+        var expires = new Date().getTime() + rand_range(MIN_LIFE, MAX_LIFE);
+        $scope.config.life = expires - createTime;
 
-    // Now randomise the various bubble elements
-    $bubbles.find('.bubble-container').each(function() {
+        function particleEnd() {
+            if($scope.config.displayed === false) {
+                $scope.config.displayed = true;
+                return;
+            }
+            if($scope.config.ended === false) {
+                $scope.config.domElement.css({
+                    transition: 'opacity 1s linear',
+                    WebkitTransition: 'opacity 1s linear',
+                    MozTransition: 'opacity 1s linear',
+                });
+                var style1 = document.querySelector('style#style-' + $scope.config.id);
+                style1.innerHTML = '.animated-' + $scope.config.id + ' { opacity: 0 !important; transform: translate3d(' + $scope.config.x + 'px, ' + $scope.config.y + 'px, 0px) !important; -webkit-transform: translate3d(' + $scope.config.x + 'px, ' + $scope.config.y + 'px, 0px) !important; -moz-transform: translate3d(' + $scope.config.x + 'px, ' + $scope.config.y + 'px, 0px) !important; }';
+                $scope.config.ended = true;
+                return;
+            }
 
-        // Randomise the bubble positions (0 - 100%)
-        var pos_rand = Math.floor(Math.random() * 101);
+            var style = document.querySelector('style#style-' + $scope.config.id);
+            document.getElementsByTagName('head')[0].removeChild(style);
+            $scope.config.ended = true;
 
-        // Randomise their size
-        var size_rand = min_bubble_size + Math.floor(Math.random() * (max_bubble_size + 1));
+            $scope.config.domElement[0].parentNode.removeChild($scope.config.domElement[0]);
 
-        // Randomise the time they start rising (0-15s)
-        var delay_rand = Math.floor(Math.random() * 16);
+            var p = new ParticleModel({
+                id: $scope.config.controller.numParticles,
+                boxSize: {
+                    width: $scope.config.header[0].offsetWidth,
+                    height: $scope.config.header[0].offsetHeight
+                },
+                header: $scope.config.header,
+                controller: $scope.config.controller
+            }).init();
 
-        // Randomise their speed (3-8s)
-        var speed_rand = 8 + Math.floor(Math.random() * 9);
+            $scope.config.controller.numParticles++;
+            $scope.config.header.append(p.config.domElement);
+        }
 
-        // Random blur
-        var blur_rand = Math.floor(Math.random() * 0);
+        $scope.config.domElement[0].addEventListener('webkitTransitionEnd', particleEnd);
+        $scope.config.domElement[0].addEventListener('transitionend', particleEnd);
 
-        // Cache the this selector
-        var $this = $(this);
+        $scope.updateDOMStyles();
 
-        // Apply the new styles
-        $this.css({
-            'left': pos_rand + '%',
+        $scope.config.x += Math.floor($scope.config.xspeed * $scope.config.life / 1000);
+        $scope.config.y += Math.floor($scope.config.yspeed * $scope.config.life / 1000);
 
-            '-webkit-animation-duration': speed_rand + 's',
-            '-moz-animation-duration': speed_rand + 's',
-            '-ms-animation-duration': speed_rand + 's',
-            'animation-duration': speed_rand + 's',
+        $scope.updateXY();
 
-            '-webkit-animation-delay': delay_rand + 's',
-            '-moz-animation-delay': delay_rand + 's',
-            '-ms-animation-delay': delay_rand + 's',
-            'animation-delay': delay_rand + 's',
+        return $scope;
+    };
 
-            '-webkit-filter': 'blur(' + blur_rand + 'px)',
-            '-moz-filter': 'blur(' + blur_rand + 'px)',
-            '-ms-filter': 'blur(' + blur_rand + 'px)',
-            'filter': 'blur(' + blur_rand + 'px)',
+    $scope.updateDOMStyles = function() {
+        $scope.config.domElement.css({
+            width: $scope.config.size + 'px',
+            height: $scope.config.size + 'px',
+            borderRadius: $scope.config.size/2 + 'px',
+            webkitFilter: 'blur(' + $scope.config.blur + 'px)',
+            filter: 'blur(' + $scope.config.blur + 'px)',
+            transition: 'transform ' + $scope.config.life/1000 + 's linear, opacity 1s linear',
+            WebkitTransition: '-webkit-transform ' + $scope.config.life/1000 + 's linear, opacity 1s linear',
+            MozTransition: '-moz-transform ' + $scope.config.life/1000 + 's linear, opacity 1s linear',
+            transform: 'translate3d(' + $scope.config.x + 'px, ' + $scope.config.y + 'px, 0px) scale3d(1,1,1)',
+            webkitTransform: 'translate3d(' + $scope.config.x + 'px, ' + $scope.config.y + 'px, 0px) scale3d(1,1,1)',
+            MozTransform: 'translate3d(' + $scope.config.x + 'px, ' + $scope.config.y + 'px, 0px) scale3d(1,1,1)'
         });
+    };
 
-        $this.children('.bubble').css({
-            'width': size_rand + 'px',
-            'height': size_rand + 'px'
-        });
+    $scope.updateXY = function() {
+        var className = 'animated-' + $scope.config.id;
+        var style = document.createElement('style');
+        style.type = 'text/css';
+        style.id = 'style-' + $scope.config.id;
+        style.innerHTML = '.' + className + ' { opacity: ' + $scope.config.opacity + ' !important; transform: translate3d(' + $scope.config.x + 'px, ' + $scope.config.y + 'px, 0px) scale3d(1,1,1) !important; -webkit-transform: translate3d(' + $scope.config.x + 'px, ' + $scope.config.y + 'px, 0px) scale3d(1,1,1) !important; -moz-transform: translate3d(' + $scope.config.x + 'px, ' + $scope.config.y + 'px, 0px) scale3d(1,1,1) !important; }';
+        document.getElementsByTagName('head')[0].appendChild(style);
+        setTimeout(function() {
+            $scope.config.domElement.addClass(className);
+        }, 100);
+    };
 
-    });
+    return $scope;
 }
 
-// In case users value their laptop battery life
-// Allow them to turn the bubbles off
-$('.bubble-toggle').click(function() {
-    if ($bubbles.is(':empty')) {
-        bubbles();
-        $bubbles.show();
-        $(this).text('Bubbles Off');
-    } else {
-        $bubbles.fadeOut(function() {
-            $(this).empty();
-        });
-        $(this).text('Bubbles On');
-    }
+function ParticleController(config) {
+    var $scope = this;
+    $scope.numParticles = 0;
 
-    return false;
-});
+    var defaults = {
+        numberOfParticles: 0,  // should be defined in config;
+        header: undefined      // should be defined in config
+    };
 
-bubbles();
+    $scope.config = angular.extend(defaults, config);
+
+    $scope.init = function() {
+        console.log($scope.config.header);
+        for(var i = 0; i < $scope.config.numberOfParticles; i++) {
+            var p = new ParticleModel({
+                id: i,
+                boxSize: {
+                    width: $scope.config.header[0].offsetWidth,
+                    height: $scope.config.header[0].offsetHeight
+                },
+                header: $scope.config.header,
+                controller: $scope
+            }).init();
+
+            $scope.numParticles++;
+            $scope.config.header.append(p.config.domElement);
+        }
+    };
+
+    return $scope;
+}
+
+var pc = new ParticleController({
+    numberOfParticles: 20,
+    header: angular.element(document.querySelector('.header2'))
+}).init();

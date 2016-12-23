@@ -10,12 +10,12 @@ function ParticleModel(config) {
     var MIN_SIZE = 5;
     var MAX_SPEED = 10; // per second
     var MIN_SPEED =10;
-    var MAX_OPACITY = 1;
-    var MIN_OPACITY = 0.7;
+    var MAX_OPACITY = 0.5;
+    var MIN_OPACITY = 0.3;
     var MAX_VECTOR = 360;
     var MIN_VECTOR = 0;
-    var MAX_LIFE =10000; // ms
-    var MIN_LIFE = 5000;
+    var MAX_LIFE = 5000; // ms
+    var MIN_LIFE = 1000;
 
     var defaults = {
         displayed: false,

@@ -31,8 +31,8 @@ h3{
 }.s-head{
     /*border-top:8px solid #27aea2;*/
     background-color: transparent;
-
-    padding-top: 70px;
+    text-align: right;
+    padding-top: 20px;
 }
 .ztp{
     z-index: 999999;
@@ -53,8 +53,8 @@ h3{
 }
 .subheading{
     margin-top: 10px;
-    font-weight: 200;
-    letter-spacing: 5px;
+    font-weight: 400;
+    letter-spacing: 2px;
 
 }
 .wrapper{

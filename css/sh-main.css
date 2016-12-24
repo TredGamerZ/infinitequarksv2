@@ -3,6 +3,9 @@
     color: #bbb;
 
 }
+.text-center{
+    text-align: center;
+}
 #space2{
     margin-bottom: 80px;
 }
@@ -134,4 +137,100 @@
     text-decoration: underline;
     color: #888;
     font-size: 12px;
+}
+
+/*Carousel */
+.sh-subheading{
+    font-weight: 300;
+}
+.m-subheading{
+    font-size: 45px;
+    margin:0px ;
+    font-weight: bold;
+    letter-spacing: -3px;
+}
+.owl-carousel .owl-wrapper-outer {
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+.text-center {
+    text-align: center;
+}
+#owl-demo .item{
+    margin:2px;
+}
+#owl-demo .item. img{
+    display: block;
+}
+.glyphicon{
+    background-image: none;
+      color: #232323;
+      border: none; 
+      font-size: 70px;
+}
+.owl-theme .owl-controls .owl-buttons div {
+  position: absolute;
+}
+ 
+.owl-theme .owl-controls .owl-buttons .owl-prev{
+  left: 80px;
+  top: 155px;
+  background: transparent;
+}
+ 
+.owl-theme .owl-controls .owl-buttons .owl-next{
+  right: 80px;
+  top: 155px;
+  background: transparent;
+}
+.s1{
+    background-image:url('img/svg-sh/top1.svg');
+    background-attachment: fixed;
+}
+.sh-sectionblue{
+  background : -moz-linear-gradient(75.46% 124.75% 122.53deg,rgba(0, 112, 106, 1) 0%,rgba(0, 167, 157, 1) 100%);
+  background : -webkit-linear-gradient(122.53deg, rgba(0, 112, 106, 1) 0%, rgba(0, 167, 157, 1) 100%);
+  background : -webkit-gradient(linear,75.46% 124.75% ,50.52% 46.63% ,color-stop(0,rgba(0, 112, 106, 1) ),color-stop(1,rgba(0, 167, 157, 1) ));
+  background : -o-linear-gradient(122.53deg, rgba(0, 112, 106, 1) 0%, rgba(0, 167, 157, 1) 100%);
+  background : -ms-linear-gradient(122.53deg, rgba(0, 112, 106, 1) 0%, rgba(0, 167, 157, 1) 100%);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#00706A', endColorstr='#00A79D' ,GradientType=0)";
+  background : linear-gradient(-32.53deg, rgba(0, 112, 106, 1) 0%, rgba(0, 167, 157, 1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00706A',endColorstr='#00A79D' , GradientType=1);
+}
+.Footerlogo{
+        display: block;
+    position: absolute;
+    left: 50%;
+    width: 100px;
+    height: 100px;
+    margin-top: -76px;
+    z-index: 9;
+    transform: translateX(-50%);
+
+}
+.contact{
+    font-size: 18px;
+    font-weight: 500;
+    font-color: #818181;
+}
+ .a1{
+    font-size: 100px;
+    margin-top: 35px;
+}
+.a2{
+    font-size: 70px;
+    margin-top: 35px;
+    text-align: center;
+}
+.contact-sub{
+    font-size: 30px;
+    text-align: center;
+    margin-left: 10px;
+    opacity: 0.7;
+}
+.contact-details{
+        margin-bottom: 16px !important;
+        font-size: 18px !important;
 }
